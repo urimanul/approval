@@ -48,9 +48,9 @@ if st.button("取得"):
     # 編集後のデータを取得
     updated_df = grid_response['data']
 
-# 編集後のデータを表示
-st.write("Updated DataFrame:")
-st.dataframe(updated_df)
+    # 編集後のデータを表示
+    st.write("Updated DataFrame:")
+    st.dataframe(updated_df)
 
 if st.button("更新"):
     try:
