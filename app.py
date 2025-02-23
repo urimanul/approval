@@ -1,6 +1,22 @@
 import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder, DataReturnMode, GridUpdateMode
+import mysql.connector as mydb
+
+# コネクションの作成
+conn = mydb.connect(
+    host='www.ryhintl.com',
+    port='36000',
+    user='smairuser',
+    password='smairuser',
+    database='smair'
+)
+
+cur = conn.cursor()
+cur.execute("SELECT * FROM openai_payload")
+
+# 全てのデータを取得
+rows = cur.fetchall()
 
 # サンプルデータの作成
 data = {
