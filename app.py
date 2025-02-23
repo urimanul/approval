@@ -48,3 +48,16 @@ updated_df = grid_response['data']
 # 編集後のデータを表示
 st.write("Updated DataFrame:")
 st.dataframe(updated_df)
+
+if st.button("実行"):
+    try:
+        with connection.cursor() as cursor:
+            # データフレームの各行をループして更新
+            for index, row in updated_df.iterrows():
+                sql = f"UPDATE eprag_workflow SET feedback = %s WHERE id = 13"
+                cursor.execute(sql, (row['feedback']))
+        
+            # 変更をコミット
+            connection.commit()
+    finally:
+        connection.close()
