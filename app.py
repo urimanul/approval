@@ -22,9 +22,9 @@ st.write(rows)
 
 # サンプルデータの作成
 data = {
-    'Name': ['John', 'Anna', 'Peter', 'Linda'],
-    'Age': [28, 24, 35, 32],
-    'City': ['New York', 'Paris', 'Berlin', 'London']
+    'Name': ['John'],
+    'Age': [28],
+    'City': ['New York']
 }
 df = pd.DataFrame(data)
 
