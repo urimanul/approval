@@ -15,52 +15,51 @@ conn = mydb.connect(
 cur = conn.cursor(dictionary=True)
 
 st.title("ドキュメントフィードバック")
+#docid= st.text_input("DOCID", "13")
 
-# DOCIDの入力
-docid = st.text_input("DOCIDを入力してください", "13")
+#if st.button("取得"):
+cur.execute("SELECT * FROM eprag_workflow")
 
-if st.button("取得"):
-    # SQLクエリを実行してデータを取得
-    cur.execute("SELECT * FROM eprag_workflow where id = "+docid)
-    rows = cur.fetchall()
+# 全てのデータを取得
+rows = cur.fetchall()
 
-    # データフレームに変換
-    df = pd.DataFrame(rows)
+#st.write(rows)
 
-    # GridOptionsの設定
-    gb = GridOptionsBuilder.from_dataframe(df)
-    gb.configure_pagination(paginationAutoPageSize=True)  # ページネーションの設定
-    gb.configure_default_column(editable=True)  # 全ての列を編集可能に設定
-    grid_options = gb.build()
+# サンプルデータの作成
+data = rows
+df = pd.DataFrame(data)
 
-    # AgGridの表示
-    grid_response = AgGrid(
-        df,
-        gridOptions=grid_options,
-        data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
-        update_mode=GridUpdateMode.MODEL_CHANGED,
-        fit_columns_on_grid_load=True,
-        enable_enterprise_modules=True,
-        height=350,
-        reload_data=True
-    )
+# GridOptionsの設定
+gb = GridOptionsBuilder.from_dataframe(df)
+gb.configure_pagination(paginationAutoPageSize=True)  # ページネーションの設定
+gb.configure_default_column(editable=True)  # 全ての列を編集可能に設定
+grid_options = gb.build()
 
-    # 編集後のデータを取得
-    updated_df = grid_response['data']
+# AgGridの表示
+grid_response = AgGrid(
+    df,
+    gridOptions=grid_options,
+    data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
+    update_mode=GridUpdateMode.MODEL_CHANGED,
+    fit_columns_on_grid_load=True,
+    enable_enterprise_modules=True,
+    height=350,
+    reload_data=True
+)
 
-    # 編集後のデータを表示
-    st.write("Updated DataFrame:")
-    st.dataframe(updated_df)
+# 編集後のデータを取得
+updated_df = grid_response['data']
 
-    if st.button("更新"):
-        try:
-            # データフレームの各行をループして更新
-            for index, row in updated_df.iterrows():
-                sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"' WHERE id = 13"
-                cur.execute(sql)
-            conn.commit()
-            st.success("Database updated successfully!")
-        except Exception as e:
-            st.error(f"Failed to update database: {e}")
-        finally:
-            conn.close()
+# 編集後のデータを表示
+st.write("Updated DataFrame:")
+st.dataframe(updated_df)
+
+if st.button("更新"):
+    try:
+        # データフレームの各行をループして更新
+        for index, row in updated_df.iterrows():
+            sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"' WHERE id = 13"
+            cur.execute(sql)
+        conn.commit()
+    finally:
+        cur.close()
