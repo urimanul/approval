@@ -61,5 +61,6 @@ if st.button("更新"):
             sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"', approvedby = '"+row['approvedby'] +"' WHERE id = 13"
             cur.execute(sql)
         conn.commit()
+        st.write("データが更新されました。")
     finally:
         cur.close()
