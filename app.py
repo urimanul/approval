@@ -51,13 +51,13 @@ st.dataframe(updated_df)
 
 if st.button("実行"):
     try:
-        with connection.cursor() as cursor:
+        with conn.cursor() as cursor:
             # データフレームの各行をループして更新
             for index, row in updated_df.iterrows():
                 sql = f"UPDATE eprag_workflow SET feedback = %s WHERE id = 13"
                 cursor.execute(sql, (row['feedback']))
         
             # 変更をコミット
-            connection.commit()
+            cursor.commit()
     finally:
-        connection.close()
+        cursor.close()
