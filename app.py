@@ -18,7 +18,7 @@ st.title("ドキュメントフィードバック")
 #docid= st.text_input("DOCID", "13")
 
 #if st.button("取得"):
-cur.execute("SELECT * FROM eprag_workflow")
+cur.execute("SELECT * FROM eprag_workflow where active = '1'")
 
 # 全てのデータを取得
 rows = cur.fetchall()
