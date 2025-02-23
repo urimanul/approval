@@ -56,12 +56,11 @@ if st.button("取得"):
         try:
             # データフレームの各行をループして更新
             for index, row in updated_df.iterrows():
-                sql = f"UPDATE {table_name} SET feedback = %s WHERE id = %s"
-                cur.execute(sql, (row['feedback'], row['id']))
+                sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"' WHERE id = 13"
+                cur.execute(sql)
             conn.commit()
             st.success("Database updated successfully!")
         except Exception as e:
             st.error(f"Failed to update database: {e}")
         finally:
-            cur.close()
             conn.close()
