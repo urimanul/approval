@@ -12,7 +12,7 @@ conn = mydb.connect(
     database='smair'
 )
 
-cur = conn.cursor(pymysql.cursors.DictCursor)
+cur = conn.cursor(dictionary=True)
 
 st.title("ドキュメントフィードバック")
 
