@@ -45,8 +45,8 @@ if st.button("取得"):
         reload_data=True
     )
 
-# 編集後のデータを取得
-updated_df = grid_response['data']
+    # 編集後のデータを取得
+    updated_df = grid_response['data']
 
 # 編集後のデータを表示
 st.write("Updated DataFrame:")
