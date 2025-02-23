@@ -13,6 +13,9 @@ conn = mydb.connect(
 )
 
 cur = conn.cursor(dictionary=True)
+
+st.title("ドキュメントフィードバック")
+
 cur.execute("SELECT * FROM eprag_workflow")
 
 # 全てのデータを取得
@@ -49,7 +52,7 @@ updated_df = grid_response['data']
 st.write("Updated DataFrame:")
 st.dataframe(updated_df)
 
-if st.button("実行"):
+if st.button("更新"):
     try:
         # データフレームの各行をループして更新
         for index, row in updated_df.iterrows():
