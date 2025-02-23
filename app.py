@@ -14,30 +14,28 @@ conn = mydb.connect(
 
 cur = conn.cursor(dictionary=True)
 
-grid_options = None
-
 st.title("ドキュメントフィードバック")
-docid= st.text_input("DOCID", "13")
+#docid= st.text_input("DOCID", "13")
 
-if st.button("取得"):
-    cur.execute("SELECT * FROM eprag_workflow")
+#if st.button("取得"):
+cur.execute("SELECT * FROM eprag_workflow")
 
-    # 全てのデータを取得
-    rows = cur.fetchall()
+# 全てのデータを取得
+rows = cur.fetchall()
 
-    # サンプルデータの作成
-    data = rows
-    df = pd.DataFrame(data)
+#st.write(rows)
 
-    # GridOptionsの設定
-    gb = GridOptionsBuilder.from_dataframe(df)
-    gb.configure_pagination(paginationAutoPageSize=True)  # ページネーションの設定
-    gb.configure_default_column(editable=True)  # 全ての列を編集可能に設定
-    global grid_options
-    grid_options = gb.build()
+# サンプルデータの作成
+data = rows
+df = pd.DataFrame(data)
+
+# GridOptionsの設定
+gb = GridOptionsBuilder.from_dataframe(df)
+gb.configure_pagination(paginationAutoPageSize=True)  # ページネーションの設定
+gb.configure_default_column(editable=True)  # 全ての列を編集可能に設定
+grid_options = gb.build()
 
 # AgGridの表示
-global grid_options
 grid_response = AgGrid(
     df,
     gridOptions=grid_options,
