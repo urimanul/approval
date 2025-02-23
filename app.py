@@ -13,10 +13,12 @@ conn = mydb.connect(
 )
 
 cur = conn.cursor()
-cur.execute("SELECT * FROM openai_payload")
+cur.execute("SELECT * FROM eprag_workflow")
 
 # 全てのデータを取得
 rows = cur.fetchall()
+
+st.write(rows)
 
 # サンプルデータの作成
 data = {
