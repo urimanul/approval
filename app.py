@@ -33,6 +33,7 @@ if st.button("取得"):
     gb = GridOptionsBuilder.from_dataframe(df)
     gb.configure_pagination(paginationAutoPageSize=True)  # ページネーションの設定
     gb.configure_default_column(editable=True)  # 全ての列を編集可能に設定
+    global grid_options
     grid_options = gb.build()
 
 # AgGridの表示
