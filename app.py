@@ -21,11 +21,7 @@ rows = cur.fetchall()
 st.write(rows)
 
 # サンプルデータの作成
-data = {
-    'Name': ['John'],
-    'Age': [28],
-    'City': ['New York']
-}
+data = rows
 df = pd.DataFrame(data)
 
 # GridOptionsの設定
