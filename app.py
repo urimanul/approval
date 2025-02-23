@@ -21,7 +21,7 @@ docid = st.text_input("DOCID", "13")
 
 if st.button("取得"):
     # SQLクエリを実行してデータを取得
-    cur.execute(f"SELECT * FROM {table_name} WHERE id = %s", (docid,))
+    cur.execute("SELECT * FROM eprag_workflow id = "+docid)
     rows = cur.fetchall()
 
     # データフレームに変換
