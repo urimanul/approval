@@ -18,7 +18,7 @@ cur.execute("SELECT * FROM eprag_workflow")
 # 全てのデータを取得
 rows = cur.fetchall()
 
-st.write(rows)
+#st.write(rows)
 
 # サンプルデータの作成
 data = rows
