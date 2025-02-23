@@ -22,7 +22,7 @@ print(docid)
 
 if st.button("取得"):
     # SQLクエリを実行してデータを取得
-    cur.execute("SELECT * FROM eprag_workflow id = "+str(docid)
+    cur.execute("SELECT * FROM eprag_workflow id = "+str(docid))
     rows = cur.fetchall()
 
     # データフレームに変換
