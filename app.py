@@ -58,7 +58,7 @@ if st.button("更新"):
     try:
         # データフレームの各行をループして更新
         for index, row in updated_df.iterrows():
-            sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"' WHERE id = 13"
+            sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"', approvedby = '"+row['approvedby'] +"' WHERE id = 13"
             cur.execute(sql)
         conn.commit()
     finally:
