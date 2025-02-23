@@ -17,8 +17,7 @@ cur = conn.cursor(dictionary=True)
 st.title("ドキュメントフィードバック")
 
 # DOCIDの入力
-docid = st.text_input("DOCID", "13")
-st.write(docid)
+docid = st.text_input("DOCIDを入力してください", "13")
 
 if st.button("取得"):
     # SQLクエリを実行してデータを取得
