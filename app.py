@@ -18,10 +18,11 @@ st.title("ドキュメントフィードバック")
 
 # DOCIDの入力
 docid = st.text_input("DOCID", "13")
+print(docid)
 
 if st.button("取得"):
     # SQLクエリを実行してデータを取得
-    cur.execute("SELECT * FROM eprag_workflow id = "+docid)
+    cur.execute("SELECT * FROM eprag_workflow id = "+str(docid)
     rows = cur.fetchall()
 
     # データフレームに変換
