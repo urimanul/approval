@@ -61,4 +61,4 @@ if st.button("実行"):
         # 変更をコミット
         cur.commit()
     finally:
-        cursor.close()
+        cur.close()
