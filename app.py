@@ -12,7 +12,7 @@ conn = mydb.connect(
     database='smair'
 )
 
-cur = conn.cursor()
+cur = conn.cursor(dictionary=True)
 cur.execute("SELECT * FROM eprag_workflow")
 
 # 全てのデータを取得
