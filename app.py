@@ -55,9 +55,8 @@ if st.button("実行"):
         for index, row in updated_df.iterrows():
             st.write(row['feedback'])
             sql = f"UPDATE eprag_workflow SET feedback = {row['feedback']} WHERE id = 13"
+            st.write(sql)
             cur.execute(sql)
-        
-        # 変更をコミット
-        cur.commit()
+            cur.commit()
     finally:
         cur.close()
