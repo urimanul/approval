@@ -57,6 +57,6 @@ if st.button("実行"):
             sql = "UPDATE eprag_workflow SET feedback = '"+row['feedback']+"' WHERE id = 13"
             st.write(sql)
             cur.execute(sql)
-            cur.commit()
+        cur.commit()
     finally:
         cur.close()
